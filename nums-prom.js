@@ -1,19 +1,19 @@
 let favNumber = 5;
 let baseURL = "http://numbersapi.com/";
 
-axios.get(baseURL + favNumber + '?json').then(data => {
-	console.log(data);
+axios.get(baseURL + favNumber + '?json').then(res => {
+	console.log(res);
 });
 
 let moreFavs = [0, 3, 4];
-axios.get(baseURL + moreFavs + '?json').then(data => {
-	console.log(data);
+axios.get(baseURL + moreFavs + '?json').then(res => {
+	console.log(res);
 });
 
 Promise.all(
   Array.from({ length: 4 }, () => {
-    return $.getJSON(baseURL + favNumber + '?json');
+    return axios.get(baseURL + favNumber + '?json');
   })
 ).then(facts => {
-  facts.forEach(data => $("body").append(`<p>${data.text}</p>`));
+  facts.forEach(res => $("body").append(`<p>${res.data.text}</p>`));
 });
